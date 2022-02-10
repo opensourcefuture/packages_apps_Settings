@@ -55,6 +55,10 @@ public class UsbBackend {
     @VisibleForTesting
     public UsbBackend(Context context, UserRestrictionUtil userRestrictionUtil) {
         mContext = context;
+        mRestricted = false;
+        mRestrictedBySystem = false;
+        mMidi = false;
+        if (true) return;
         mUsbManager = context.getSystemService(UsbManager.class);
 
         mRestricted = userRestrictionUtil.isUsbFileTransferRestricted();
@@ -101,6 +105,7 @@ public class UsbBackend {
     }
 
     private boolean isUsbDataUnlocked() {
+        if (true) return false;
         Intent intent = mContext.registerReceiver(null,
             new IntentFilter(UsbManager.ACTION_USB_STATE));
         return intent == null ?
@@ -108,6 +113,7 @@ public class UsbBackend {
     }
 
     private void setUsbFunction(int mode) {
+        if (true) return;
         switch (mode) {
             case MODE_DATA_MTP:
                 mUsbManager.setCurrentFunction(UsbManager.USB_FUNCTION_MTP, true);
@@ -125,6 +131,7 @@ public class UsbBackend {
     }
 
     public void setMode(int mode) {
+        if (true) return;
         if (mPort != null) {
             int powerRole = modeToPower(mode);
             // If we aren't using any data modes and we support host mode, then go to host mode
@@ -144,6 +151,7 @@ public class UsbBackend {
     }
 
     public boolean isModeDisallowed(int mode) {
+        if (true) return true;
         if (mRestricted && (mode & MODE_DATA_MASK) != MODE_DATA_NONE
                 && (mode & MODE_DATA_MASK) != MODE_DATA_MIDI) {
             // No USB data modes are supported.

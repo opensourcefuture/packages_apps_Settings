@@ -507,7 +507,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
             }
             mLogpersist = null;
         }
-        mUsbConfiguration = addListPreference(USB_CONFIGURATION_KEY);
+        // mUsbConfiguration = addListPreference(USB_CONFIGURATION_KEY);
         mBluetoothShowDevicesWithoutNames =
                 findAndInitSwitchPref(BLUETOOTH_SHOW_DEVICES_WITHOUT_NAMES_KEY);
         mBluetoothDisableAbsVolume = findAndInitSwitchPref(BLUETOOTH_DISABLE_ABSOLUTE_VOLUME_KEY);
@@ -1058,6 +1058,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     }
 
     private static boolean showEnableOemUnlockPreference(Context context) {
+        if (true) return false;
         return context.getSystemService(Context.OEM_LOCK_SERVICE) != null;
     }
 
